@@ -2,18 +2,35 @@
 <html>
 <head><meta charset="utf-8"><title>Demo Shop - Search</title><link rel="stylesheet" href="style.css"></head>
 <body>
-  <h1>Search Products</h1>
-  <input id="search-box" placeholder="Search products">
-  <button id="search-btn">Search</button>
-  <ul id="results"></ul>
-  <p id="no-results"></p>
-  <a id="goto-checkout" href="checkout.html">Go to checkout</a>
+  <header>
+    <span class="brand">🛒 Demo Shop</span>
+    <nav><a href="search.html">Products</a><a href="checkout.html">Checkout</a></nav>
+  </header>
+  <main>
+    <h1>Search Products</h1>
+    <div class="search-bar">
+      <input id="search-box" placeholder="Search products">
+      <button id="search-btn">Search</button>
+    </div>
+    <ul id="results"></ul>
+    <p id="no-results"></p>
+    <h2>All products</h2>
+    <div class="grid" id="catalog"></div>
+    <a id="goto-checkout" class="btn-link" href="checkout.html">Go to checkout</a>
+  </main>
   <script>
-    const products = ['Laptop', 'Phone', 'Headphones'];
+    const products = [
+      { name: 'Laptop', price: 60, icon: '💻' },
+      { name: 'Phone', price: 50, icon: '📱' },
+      { name: 'Headphones', price: 40, icon: '🎧' }
+    ];
+    document.getElementById('catalog').innerHTML = products.map(p =>
+      `<div class="product"><div class="icon">${p.icon}</div><div class="name">${p.name}</div><div class="price">$${p.price}</div></div>`
+    ).join('');
     document.getElementById('search-btn').onclick = () => {
       const q = document.getElementById('search-box').value.toLowerCase();
-      const found = products.filter(p => p.toLowerCase().includes(q));
-      document.getElementById('results').innerHTML = found.map(p => `<li>${p}</li>`).join('');
+      const found = products.filter(p => p.name.toLowerCase().includes(q));
+      document.getElementById('results').innerHTML = found.map(p => `<li>${p.name}</li>`).join('');
       document.getElementById('no-results').textContent = found.length ? '' : 'No products found';
     };
   </script>
