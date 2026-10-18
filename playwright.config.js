@@ -4,6 +4,7 @@ module.exports = defineConfig({
   testDir: './tests',
   use: {
     baseURL: process.env.BASE_URL || 'https://gyanipanditji20-lang.github.io/demo-shop/',
+    channel: process.env.PW_CHANNEL || undefined,
     video: 'on',
     trace: 'on',
     launchOptions: { slowMo: Number(process.env.SLOWMO || 0) }
