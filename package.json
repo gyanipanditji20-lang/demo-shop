@@ -1,0 +1,7 @@
+{
+  "name": "demo-shop",
+  "private": true,
+  "devDependencies": {
+    "@playwright/test": "latest"
+  }
+}
